@@ -118,6 +118,7 @@ export default new Router({
          meta: {
            breadcrumb: 'Classes'
          },
+         props: true
        },
        {
          path: 'customers',

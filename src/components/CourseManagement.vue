@@ -60,7 +60,7 @@
           });
        },
        jumpToClasses(course){
-          window.location="/classes/1";
+          window.location="#/classes/"+course.courseId;
 
        }
     }
