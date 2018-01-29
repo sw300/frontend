@@ -9,5 +9,4 @@ npm run dev
 
 ```
 localhost:8081 혹은 localhost:8082 로 접속
-user id /pwd = jyjang@uengine.org / 18925msa
 ```
