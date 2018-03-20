@@ -10,6 +10,7 @@ import router from './router'
 Vue.use(VueMaterial);
 window.busVue = new Vue();
 
+
 import VueBreadcrumbs from 'vue-breadcrumbs'
 Vue.use(VueBreadcrumbs, {
   template: '<nav class="breadcrumb" v-if="$breadcrumbs.length"> ' +
@@ -33,3 +34,6 @@ new Vue({
   components: {App},
   data: {}
 });
+
+
+

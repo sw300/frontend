@@ -35,6 +35,7 @@ module.exports = function (iam) {
         localStorage['user'] = info.context.user;
         localStorage['userName'] = info.context.userName;
 
+alert('x')
         window.backend = hybind('http://localhost:8080', {headers:{'access_token': localStorage['access_token']}});
 
 

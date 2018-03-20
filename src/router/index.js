@@ -49,6 +49,7 @@ iam.setDefaultClient(clientKey, clientSecret);
 //Mark in window
 window.iam = iam;
 
+
 let RouterGuard = require("./RouterGuard.js")(iam);
 Vue.use(Router);
 
