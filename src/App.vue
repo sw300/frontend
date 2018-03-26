@@ -18,8 +18,8 @@
   export default {
     data () {
       return {
-        configServerUrl: configServerUrl,
-        config: window.config,
+//        configServerUrl: configServerUrl,
+//        config: window.config,
         snackbar: {
           top: true,
           right: true,

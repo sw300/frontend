@@ -8,6 +8,7 @@ import ClassManagement from '@/components/ClassManagement'
 import CustomerManagement from '@/components/CustomerManagement'
 import Course from '@/components/Course'
 import Clazz from '@/components/Clazz'
+import IAMAvatar from '@/components/IAMAvatar'
 
 
 Vue.component('dashboard', Dashboard);
@@ -16,6 +17,7 @@ Vue.component('course', Course);
 Vue.component('class-management', ClassManagement);
 Vue.component('clazz', Clazz);
 Vue.component('customer-management', CustomerManagement);
+Vue.component('iam-avatar', IAMAvatar)
 
 import Login from '../../node_modules/metaworks4/src/components/Login.vue'
 import Metaworks4 from '../../node_modules/metaworks4'
@@ -38,7 +40,7 @@ var profile = window.profile;
 
 //Change the url your IAM application's vcap service's profile url.
 //For example, 'http://' + config.vcap.services['your-iam-server'][profile].external;
-var iamUrl = 'http://' + config.vcap.services.iam.external;
+var iamUrl = 'http://iam.pas-mini.io';
 
 //Define iam client
 var iam = new IAM(iamUrl);
@@ -49,9 +51,9 @@ iam.setDefaultClient(clientKey, clientSecret);
 //Mark in window
 window.iam = iam;
 
-
 let RouterGuard = require("./RouterGuard.js")(iam);
 Vue.use(Router);
+
 
 /**
  * VueImgInputer
