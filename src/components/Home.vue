@@ -43,9 +43,8 @@
         isAppDetail: true,
         drawer: null,
         items: [
-          {title: 'Dashboard', icon: 'dashboard', routerPath: '/dashboard'},
-          {title: 'Courses', icon: 'dashboard', routerPath: '/courses'},
-          {title: 'Classes', icon: 'settings_applications', routerPath: '/classes'},
+          {title: 'Courses and Classes', icon: 'dashboard', routerPath: '/courses'},
+          {title: 'SME', icon: 'settings_applications', routerPath: '/smes'},
           {title: 'Customer', icon: 'people', routerPath: '/customers'}
         ],
         mini: false

@@ -14,44 +14,87 @@
       return {
         clazzes: [],
         newClazz: {
-          title: 'New Class'
-        }
+          title: 'New Class',
+          status: 'wait-for-instructor'
+        },
+        course: {}
 
       }
     },
     created() {
 
-      var course = {};
+      //var course = {};
       var me = this;
 
-       backend.$bind("courses/" + this.courseId, course);
+      $.ajax({
+        url: "http://localhost:8080/courses/" + this.courseId,
+        success:   function(result){
+                     me.course = result;
 
-       course.$load().then(function(course){
-          course.clazzes.$load().then(function(clazzes){
-            me.clazzes = clazzes;
-          })
-       });
+                      $.ajax({
+                        url: me.course._links.clazzes.href,
+                        success:   function(result){
+                          me.clazzes = result._embedded.clazzes;
+                        }
+                      });
+
+                   },
+      })
+
+//       backend.$bind("courses/" + this.courseId, this.course);
+//
+//       this.course.$load().then(function(course){
+//          course.clazzes.$load().then(function(clazzes){
+//            me.clazzes = clazzes;
+//          })
+//       });
     },
     watch: {},
     methods: {
        addClazz(clazz){
 
          var me = this;
-         var allClazzes = [];
-         backend.$bind("clazzes", allClazzes);
-         allClazzes.$load();
 
-         allClazzes.$create(clazz).then(function(newClazz){
-           me.clazzes.push(newClazz);
-           alert('Successfully Added!')
-         });
+         clazz.course = this.course._links.self.href;
+
+         $.ajax({
+           method: "POST",
+           url: "http://localhost:8080/clazzes",
+           contentType: "application/json",
+           data: JSON.stringify(clazz),
+           success:
+              function(result){
+                 me.clazzes.push(result);
+                 alert('Successfully Added!')
+              },
+         })
+
+//         var allClazzes = [];
+//         backend.$bind("clazzes", allClazzes);
+//         allClazzes.$load();
+//
+//         allClazzes.$create(clazz).then(function(newClazz){
+//          newClazz.$load().course.$set(this.course);
+//           me.clazzes.push(newClazz);
+//           alert('Successfully Added!')
+//         });
        },
-       removeCourse(clazz){
+       removeClazz(clazz){
           var me = this;
-          clazz.$remove().then(function(){
-            var index = me.clazzes.indexOf(clazz);
-            me.clazzes.splice(index, 1);
-          });
+
+          $.ajax({
+            url: clazz._links.self.href,
+            method: 'DELETE',
+            success:
+              function(result){
+                var index = me.clazzes.indexOf(clazz);
+                me.clazzes.splice(index, 1);
+              },
+          })
+//          clazz.$remove().then(function(){
+//            var index = me.clazzes.indexOf(clazz);
+//            me.clazzes.splice(index, 1);
+//          });
        }
     }
   }

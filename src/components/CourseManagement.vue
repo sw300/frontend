@@ -23,44 +23,87 @@
     },
     created() {
 
-      var courses = [];
       var me = this;
 
-       backend.$bind("courses", courses);
+      $.ajax(
+        {
+          url: 'http://localhost:8080/courses',
+          success: function(result){
+            me.courses = result._embedded.courses;
+          }
+        }
+      )
 
-       courses.$load().then(function(courses){
-          me.courses = courses; // set the view's data with the loaded data obtained from backend.
-       });
+//      xhr.open('GET', "http://localhost:8080/courses", false);
+//      xhr.onload = function () {
+//
+//        if(xhr.code == )
+//        var value = JSON.parse(xhr.responseText);
+//
+//      };
+//      xhr.send();
+//
+//
+//       backend.$bind("courses", courses);
+//
+//       courses.$load().then(function(courses){
+//          me.courses = courses; // set the view's data with the loaded data obtained from backend.
+//       });
     },
     watch: {},
     methods: {
       updateCourse(course){
-        course.$save().then(function(){
-          alert('Successfully Updated!')
-        });
+
+        $.ajax({
+          url: course._links.self.href,
+          method: 'PUT',
+          contentType: "application/json",
+          data: JSON.stringify(course),
+          success:
+            function(result){
+             alert('Successfully Updated!');
+           },
+        })
+//        course.$save().then(function(){
+//          alert('Successfully Updated!')
+//        });
       },
        addCourse(course){
 
-         var me = this;
-         this.courses.$create(course).then(function(newCourse){
-           me.courses.push(newCourse);
-           me.newCourse = {title: 'New Course'};
+          var me = this;
 
-           alert('Successfully Added!');
-
-         });
-
-
+          $.ajax({
+            url: "http://localhost:8080/courses",
+            method: 'POST',
+            contentType: "application/json",
+            data: JSON.stringify(course),
+            success:
+              function(result){
+               me.courses.push(result);
+               me.newCourse = {title: 'New Course'};
+               alert('Successfully Added!');
+             },
+          })
        },
        removeCourse(course){
-          var me = this;
-          course.$remove().then(function(){
-            var index = me.courses.indexOf(course);
-            me.courses.splice(index, 1);
-          });
+        var me = this;
+        $.ajax({
+          url: course._links.self.href,
+          method: 'DELETE',
+          success:
+            function(result){
+              var index = me.courses.indexOf(course);
+              me.courses.splice(index, 1);
+            },
+        })
+//          var me = this;
+//          course.$remove().then(function(){
+//            var index = me.courses.indexOf(course);
+//            me.courses.splice(index, 1);
+//          });
        },
        jumpToClasses(course){
-          window.location="#/classes/"+course.courseId;
+          window.location="#/courses/"+course.courseId+"/classes";
 
        }
     }

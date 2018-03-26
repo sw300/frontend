@@ -1,5 +1,5 @@
 <template>
-    <md-card :class="editMode ? 'md-accent' : ''">
+    <md-card :class="editMode ? 'md-primary' : ''">
      <!--md-card-media>
         <img src="https://images.careers360.mobi/sites/default/files/field/image/2015/04/08/Courses-1.jpg" alt="People">
       </md-card-media-->

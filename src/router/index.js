@@ -88,22 +88,22 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/dashboard',
+      redirect: '/courses',
       name: 'home',
       component: Home,
       meta: {
         breadcrumb: '홈'
       },
       children: [
-        {
-          path: 'dashboard',
-          name: 'dashboard',
-          component: Dashboard,
-          beforeEnter: RouterGuard.requireUser,
-          meta: {
-            breadcrumb: '대시보드'
-          },
-        },
+//        {
+//          path: 'dashboard',
+//          name: 'dashboard',
+//          component: Dashboard,
+//          beforeEnter: RouterGuard.requireUser,
+//          meta: {
+//            breadcrumb: '대시보드'
+//          },
+//        },
         {
           path: 'courses',
           name: 'courses',
@@ -114,7 +114,7 @@ export default new Router({
           }
         },
        {
-         path: 'classes/:courseId',
+         path: 'courses/:courseId/classes',
          name: 'classes',
          component: ClassManagement,
          beforeEnter: RouterGuard.requireUser,
