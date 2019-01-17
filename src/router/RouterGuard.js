@@ -27,6 +27,10 @@ module.exports = function (iam) {
     });
   };
   module.isAuthenticated = function (callback) {
+
+    callback(true) //임시코드
+    return;
+
     if (!localStorage['access_token']) {
       callback(false);
     }
