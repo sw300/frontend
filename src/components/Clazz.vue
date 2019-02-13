@@ -9,9 +9,9 @@
           Status:
 
           <md-select v-if="editMode" v-model="value.status">
-            <md-option value="open">OPEN</md-option>
-            <md-option value="closed">CLOSED</md-option>
-            <md-option value="wait-for-instructor">WAIT FOR INSTRUCTOR</md-option>
+            <md-option value="OPEN">OPEN</md-option>
+            <md-option value="FINISH">FINISH</md-option>
+            <md-option value="CREATED">CREATED</md-option>
           </md-select>
           <div v-else>{{value.status}}</div>
         </div>
@@ -62,10 +62,10 @@
       load(){
           var me = this;
           $.ajax({
-            url: this.value._links.clazzDays.href,
+            url: this.value._links.clazzDayList.href,
             success: function(result){
               var value = me.value;
-              me.value.clazzDays = result._embedded.clazzDays;
+              me.value.clazzDays = result._embedded.clazzDayList;
               me.value = null;
               me.value = value;
             }

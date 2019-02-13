@@ -1,6 +1,8 @@
 <template>
   <div>
-    대시보드
+    <h1> Top Customers </h1>
+
+    <customer v-model="customers[index]" v-for="(customer, index) in customers"></customer>
 
   </div>
 </template>
@@ -8,10 +10,23 @@
   export default {
     props: {},
     data() {
-      return {}
+      return {
+        customers: []
+      }
     },
-    mounted() {
+    created() {
 
+      //var course = {};
+      var me = this;
+
+      $.ajax({
+        url: "http://localhost:8080/dashboards?sort=totalPrice,desc",
+        success:   function(result){
+                     me.customers = result._embedded.dashboards;
+
+
+                   },
+      })
     },
     watch: {},
     methods: {}

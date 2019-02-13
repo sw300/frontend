@@ -15,7 +15,7 @@
         clazzes: [],
         newClazz: {
           title: 'New Class',
-          status: 'wait-for-instructor'
+          status: 'CREATED'
         },
         course: {}
 
@@ -32,7 +32,7 @@
                      me.course = result;
 
                       $.ajax({
-                        url: me.course._links.clazzes.href,
+                        url: me.course._links.clazzList.href,
                         success:   function(result){
                           me.clazzes = result._embedded.clazzes;
                         }

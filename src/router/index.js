@@ -6,6 +6,7 @@ import Dashboard from '@/components/Dashboard'
 import CourseManagement from '@/components/CourseManagement'
 import ClassManagement from '@/components/ClassManagement'
 import CustomerManagement from '@/components/CustomerManagement'
+import Customer from '@/components/Customer'
 import Course from '@/components/Course'
 import Clazz from '@/components/Clazz'
 import IAMAvatar from '@/components/IAMAvatar'
@@ -17,6 +18,7 @@ Vue.component('course', Course);
 Vue.component('class-management', ClassManagement);
 Vue.component('clazz', Clazz);
 Vue.component('customer-management', CustomerManagement);
+Vue.component('customer', Customer);
 Vue.component('iam-avatar', IAMAvatar)
 
 import Login from '../../node_modules/metaworks4/src/components/Login.vue'
@@ -95,15 +97,15 @@ export default new Router({
         breadcrumb: '홈'
       },
       children: [
-//        {
-//          path: 'dashboard',
-//          name: 'dashboard',
-//          component: Dashboard,
-//          beforeEnter: RouterGuard.requireUser,
-//          meta: {
-//            breadcrumb: '대시보드'
-//          },
-//        },
+        {
+          path: 'dashboard',
+          name: 'dashboard',
+          component: Dashboard,
+          beforeEnter: RouterGuard.requireUser,
+          meta: {
+            breadcrumb: '대시보드'
+          },
+        },
         {
           path: 'courses',
           name: 'courses',
@@ -114,7 +116,7 @@ export default new Router({
           }
         },
        {
-         path: 'courses/:courseId/classes',
+         path: 'courses/:courseId/clazzList',
          name: 'classes',
          component: ClassManagement,
          beforeEnter: RouterGuard.requireUser,

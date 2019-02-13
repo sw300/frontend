@@ -103,7 +103,10 @@
 //          });
        },
        jumpToClasses(course){
-          window.location="#/courses/"+course.courseId+"/classes";
+
+          var dataUri = new URL(course._links.clazzList.href);
+
+          window.location="/#" + dataUri.pathname;
 
        }
     }

@@ -4,7 +4,7 @@
       <md-button class="md-icon-button" @click="toggleLeftSidenav">
         <md-icon>menu</md-icon>
       </md-button>
-      <span>Vue js Template</span>
+      <span>Public Education Operation Portal</span>
       <span style="margin-left: 15px">
         <breadcrumbs style="width: 100%"></breadcrumbs>
       </span>
@@ -43,6 +43,7 @@
         isAppDetail: true,
         drawer: null,
         items: [
+          {title: 'Dashboard', icon: 'dashboard', routerPath: '/dashboard'},
           {title: 'Courses and Classes', icon: 'dashboard', routerPath: '/courses'},
           {title: 'SME', icon: 'settings_applications', routerPath: '/smes'},
           {title: 'Customer', icon: 'people', routerPath: '/customers'}
