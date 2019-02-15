@@ -27,7 +27,7 @@
 
       $.ajax(
         {
-          url: 'window.backendHost/courses',
+          url: window.backendHost + '/courses',
           success: function(result){
             me.courses = result._embedded.courses;
           }
