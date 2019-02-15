@@ -27,7 +27,7 @@
       var me = this;
 
       $.ajax({
-        url: "http://localhost:8080/courses/" + this.courseId,
+        url: window.backendHost + "/courses/" + this.courseId,
         success:   function(result){
                      me.course = result;
 
@@ -59,7 +59,7 @@
 
          $.ajax({
            method: "POST",
-           url: "http://localhost:8080/clazzes",
+           url: window.backendHost + "/clazzes",
            contentType: "application/json",
            data: JSON.stringify(clazz),
            success:

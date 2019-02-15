@@ -27,14 +27,14 @@
 
       $.ajax(
         {
-          url: 'http://localhost:8080/courses',
+          url: 'window.backendHost/courses',
           success: function(result){
             me.courses = result._embedded.courses;
           }
         }
       )
 
-//      xhr.open('GET', "http://localhost:8080/courses", false);
+//      xhr.open('GET', window.backendHost + "/courses", false);
 //      xhr.onload = function () {
 //
 //        if(xhr.code == )
@@ -73,7 +73,7 @@
           var me = this;
 
           $.ajax({
-            url: "http://localhost:8080/courses",
+            url: window.backendHost + "/courses",
             method: 'POST',
             contentType: "application/json",
             data: JSON.stringify(course),

@@ -53,6 +53,8 @@ iam.setDefaultClient(clientKey, clientSecret);
 //Mark in window
 window.iam = iam;
 
+window.backendHost = "http://backend.public-education.com:8080";
+
 let RouterGuard = require("./RouterGuard.js")(iam);
 Vue.use(Router);
 

@@ -19,14 +19,17 @@
       //var course = {};
       var me = this;
 
-      $.ajax({
-        url: "http://localhost:8080/dashboards?sort=totalPrice,desc",
-        success:   function(result){
-                     me.customers = result._embedded.dashboards;
+      setInterval(function(){
+            $.ajax({
+              url: window.backendHost + "/dashboards?sort=totalPrice,desc",
+              success:   function(result){
+                           me.customers = result._embedded.dashboards;
 
 
-                   },
-      })
+                         },
+            })
+
+      }, 3000)
     },
     watch: {},
     methods: {}

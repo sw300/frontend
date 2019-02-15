@@ -114,7 +114,7 @@
 
         $.ajax({
           method: "POST",
-          url: "http://localhost:8080/clazzDays",
+          url: window.backendHost + "/clazzDays",
           contentType: "application/json",
           data: JSON.stringify(clazzDay),
           success:
